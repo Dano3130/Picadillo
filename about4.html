@@ -1,0 +1,20 @@
+<div>
+	<h1>ABOUT US</h1>
+	<h3>MENU</h3>
+
+	<table class="table table-striped table-condensed table-responsive" >
+		<tr>
+			<th>NAME</th>
+			<th>DESCRIPTION</th>
+			<th>CALORIES</th>
+			<th>Price</th>
+		</tr>
+		<tr ng-repeat="value in aboutRecord" id="menuItems">
+			<td>{{ value.menuName }}</td>
+			<td>{{ value.description }}</td>
+			<td>{{ value.calories }}</td>
+			<td>{{ value.price }}</td>
+		</tr>
+	</table>
+
+</div>

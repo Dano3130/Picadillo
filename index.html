@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>Angular + Bootstrap - Homework 2</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Germania+One|Ropa+Sans" rel="stylesheet">
+	
+		<style>
+			body,.navbar	{	background-color: rgb(221, 120, 73);}
+			h3, p, a, ul {		color: 				#ddd; 
+								margin-top:			0px;
+								text-align:			center; }
+			#mainBox {			background-color:	#202833;
+								min-height:			500px;
+								padding: 			15px;
+								margin-top: 		10px;
+								border:				#35475d 5px solid; }
+			#footerBox {		background-color:	#35475d; 
+								border:				#35475d 5px solid;
+								text-align: 		center;}
+			.navbar {
+								padding-top:        7px;
+								padding-bottom:     6px;
+								border:             0;
+								border-radius:      0;
+								margin-bottom:      0;
+								font-size:          12px;
+								letter-spacing:     2px;
+								}
+        	.navbar-nav li a:hover {
+        						color:              black !important;}
+			
+			#map-canvas{		padding:5px;
+								width:400px;
+								height:400px;	}
+			
+			h1				{	color:				lightgrey;
+								font-family:        'Germania One', cursive;
+								font-size:          30px;
+								text-transform:     uppercase;
+								letter-spacing:     5px;
+								margin-top:			0px;
+								text-align:			center;
+								}
+			#logo			{	color:				#35475d;
+								font-family:        'Germania One', cursive;
+								font-size:          20px;
+								text-transform:     uppercase;
+								letter-spacing:     5px;
+								margin-top:			0px;
+								text-align:			center;
+								}
+			.table-striped	{	background-color: lightblue;
+								padding: 1.5em;}
+			th, td			{	padding: 8px;
+								color: #35475d;
+								border: 1px solid #35475d; }
+			
+			
+			.alert-info {		color: 				#35475d;
+								background-color: 	rgb(211, 180, 124);
+								border-color: 		#2f2f2f;
+								text-align: 		center;}
+			.well		{		color: 				#35475d;
+								background-color: 	#ddd;
+								border-color: 		#2f2f2f;
+								text-align: 		center;}
+			
+			img		{			height: 200px;
+								width: 	200px;
+								border: 2px solid rgb(186, 170, 141);
+								margin: 2.5em;}
+
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+		
+	</head>
+	<body>		
+	<div ng-app="myApp">
+		
+		<!-- Navbar -->
+		<nav class="navbar navbar-default" >
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<!--Hamburger-->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+					</button>
+					<a class="navbar-brand" id="logo" href="#/!"><span class="glyphicon glyphicon-flash">&nbsp;</span>Picadillo Tacos</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#/!">HOME</a></li>
+						<li><a href="#!about">MENU</a></li>
+						<li><a href="#!location">LOCATION</a></li>
+						<li><a href="#!contact">CONTACT</a></li>
+					</ul>
+				</div>	
+			</div>    
+		</nav>
+			
+		<div id="mainBox">
+			<div ng-view></div>
+		</div>
+			
+		<div id="footerBox">
+			<h3>Picadillo Tacos -- 235 Marshall Ave, St Paul, MN 55102</h3>
+		</div>
+			
+	</div>
+	
+	<script>
+			var app = angular.module("myApp", ["ngRoute"]);
+			
+			app.config(function($routeProvider) {
+    			$routeProvider
+    			.when("/", {
+        			templateUrl : "home4.html",
+        			controller : "homeController"
+    			})
+    			.when("/about", {
+        			templateUrl : "about4.html",
+        			controller : "aboutController"
+    			})
+    			.when("/location", {
+        			templateUrl : "location4.html",
+        			controller : "locationController"
+    			})
+    			.when("/contact", {
+        			templateUrl : "contact4.html",
+        			controller : "contactController"
+    			})
+    			.otherwise ({
+   					redirectTo : "/"
+   				})
+    		});
+    	
+    		app.controller("homeController", function ($scope) {
+    			$scope.homeMessage1 = "WELCOME TO PICADILLO TACOS!";
+    		});
+    		
+			app.controller("contactController", function ($scope) {
+				$scope.contactMessage1 = "Please feel free to email us at info@website.com";
+				$scope.contactMessage2 = "or by phone at 651-555-1234";
+				$scope.contactMessage3 = "Directions to Our Location:";
+    		});
+    		
+    		app.controller("aboutController", function ($scope) {
+				$scope.aboutRecord = [ 
+					{ 	menuName: 'PICADILLO TACO', 
+						description: 'Ground beef, potatoes and spices with onions and cilantro', 
+						calories: '190 Cal', price: '$3.99'},
+					{ 	menuName: 'ROASTED PORK TACO', 
+						description: 'Rubbed with coarse pepper, sea salt and garlic, then roasted and served with cotija cheese and pickled red onions.', 
+						calories: '170 Cal', price: '$4.99'},
+					{ 	menuName: 'BEEF FAJITA TACO', 
+						description: 'With grilled onions and cilantro.', 
+						calories: '210 Cal', price: '$4.99'},
+					{ 	menuName: 'CHICKEN FAJITA TACO', 
+						description: 'With pico de gallo and cilantro', 
+						calories: '210 Cal', price: '$4.99'},
+					{ 	menuName: 'BRISKET TACO', 
+						description: 'Very slowly roasted then shredded, queso fresco, onion and cilantro.', 
+						calories: '240 Cal', price: '$5.99'},
+					{ 	menuName: 'RAJAS TACO VEGETARIAN', 
+						description: 'Grilled poblanos, mushrooms, onions and red peppers topped with queso fresco and cilantro', 
+						calories: '80 Cal', price: '$4.99'},
+					{ 	menuName: 'FISH TACO', 
+						description: 'Grilled with chipotle crema, red cabbage and cilantro', 
+						calories: '140 Cal', price: '$4.99'},
+					{ 	menuName: 'BAJA SHRIMP TACO', 
+						description: 'Grilled shrimp with creamy baja sauce, red cabbage and cilantro', 
+						calories: '180 Cal', price: '$4.99'}
+					];
+    		});
+    		
+    		app.controller("locationController", function ($scope) {
+				$scope.locationRecord1 = ["Minneapolis", "Saint Paul", "Anoka", "Blaine", "Brooklyn Park"];
+				$scope.locationRecord2 = ["Apple Valley", "Burnsville", "Eagan", "Minnetonka", "Bloomington"];
+    		});
+	
+		
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</body>
+</html>
