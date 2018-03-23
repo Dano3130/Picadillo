@@ -1,0 +1,21 @@
+<div>
+	<h1 class="text-uppercase text-expanded font-weight-bold">Menu</h1>
+	<p class="text-muted" >All orders served with homemade chips, salsa, and guacamole</p>
+	<div class="container">
+		<div id="menu">
+			
+
+		
+			<ul ng-repeat="value in menuRecord" id="menuItems" class="list-unstyled list-menu mb-5 text-left mx-auto">
+				<li class="list-unstyled-item list-menu-item d-flex">
+					<h5>{{ value.menuName }}</h5>
+					<span class="ml-auto">{{ value.price }}</span>
+				</li>
+
+				<li class="list-unstyled-item list-menu-info d-flex text-muted">{{ value.description }}</li>
+				<!-- <li class="list-unstyled-item list-menu-item d-flex">{{ value.calories }}</li> -->
+			</ul>
+		</div>
+	</div>
+
+</div>

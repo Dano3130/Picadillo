@@ -1,192 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	<title>Angular + Bootstrap - Homework 2</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Germania+One|Ropa+Sans" rel="stylesheet">
-	
-		<style>
-			body,.navbar	{	background-color: rgb(221, 120, 73);}
-			h3, p, a, ul {		color: 				#ddd; 
-								margin-top:			0px;
-								text-align:			center; }
-			#mainBox {			background-color:	#202833;
-								min-height:			500px;
-								padding: 			15px;
-								margin-top: 		10px;
-								border:				#35475d 5px solid; }
-			#footerBox {		background-color:	#35475d; 
-								border:				#35475d 5px solid;
-								text-align: 		center;}
-			.navbar {
-								padding-top:        7px;
-								padding-bottom:     6px;
-								border:             0;
-								border-radius:      0;
-								margin-bottom:      0;
-								font-size:          12px;
-								letter-spacing:     2px;
-								}
-        	.navbar-nav li a:hover {
-        						color:              black !important;}
-			
-			#map-canvas{		padding:5px;
-								width:400px;
-								height:400px;	}
-			
-			h1				{	color:				lightgrey;
-								font-family:        'Germania One', cursive;
-								font-size:          30px;
-								text-transform:     uppercase;
-								letter-spacing:     5px;
-								margin-top:			0px;
-								text-align:			center;
-								}
-			#logo			{	color:				#35475d;
-								font-family:        'Germania One', cursive;
-								font-size:          20px;
-								text-transform:     uppercase;
-								letter-spacing:     5px;
-								margin-top:			0px;
-								text-align:			center;
-								}
-			.table-striped	{	background-color: lightblue;
-								padding: 1.5em;}
-			th, td			{	padding: 8px;
-								color: #35475d;
-								border: 1px solid #35475d; }
-			
-			
-			.alert-info {		color: 				#35475d;
-								background-color: 	rgb(211, 180, 124);
-								border-color: 		#2f2f2f;
-								text-align: 		center;}
-			.well		{		color: 				#35475d;
-								background-color: 	#ddd;
-								border-color: 		#2f2f2f;
-								text-align: 		center;}
-			
-			img		{			height: 200px;
-								width: 	200px;
-								border: 2px solid rgb(186, 170, 141);
-								margin: 2.5em;}
 
-		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
-		
-	</head>
-	<body>		
+<head>
+	<title>Angular + Bootstrap</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	    crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Germania+One|Ropa+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk"
+	    crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P"
+	    crossorigin="anonymous">
+
+
+	<style>
+		body,
+		.navbar {
+
+			background-color: #eb6f24;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='513' height='61.6' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23cf6220' stroke-width='7.1' stroke-opacity='0.51'%3E%3Cpath d='M-500%2C75c0%2C0%2C125-30%2C250-30S0%2C75%2C0%2C75s125%2C30%2C250%2C30s250-30%2C250-30s125-30%2C250-30s250%2C30%2C250%2C30s125%2C30%2C250%2C30s250-30%2C250-30'/%3E%3Cpath d='M-500%2C45c0%2C0%2C125-30%2C250-30S0%2C45%2C0%2C45s125%2C30%2C250%2C30s250-30%2C250-30s125-30%2C250-30s250%2C30%2C250%2C30s125%2C30%2C250%2C30s250-30%2C250-30'/%3E%3Cpath d='M-500%2C105c0%2C0%2C125-30%2C250-30S0%2C105%2C0%2C105s125%2C30%2C250%2C30s250-30%2C250-30s125-30%2C250-30s250%2C30%2C250%2C30s125%2C30%2C250%2C30s250-30%2C250-30'/%3E%3Cpath d='M-500%2C15c0%2C0%2C125-30%2C250-30S0%2C15%2C0%2C15s125%2C30%2C250%2C30s250-30%2C250-30s125-30%2C250-30s250%2C30%2C250%2C30s125%2C30%2C250%2C30s250-30%2C250-30'/%3E%3Cpath d='M-500-15c0%2C0%2C125-30%2C250-30S0-15%2C0-15s125%2C30%2C250%2C30s250-30%2C250-30s125-30%2C250-30s250%2C30%2C250%2C30s125%2C30%2C250%2C30s250-30%2C250-30'/%3E%3Cpath d='M-500%2C135c0%2C0%2C125-30%2C250-30S0%2C135%2C0%2C135s125%2C30%2C250%2C30s250-30%2C250-30s125-30%2C250-30s250%2C30%2C250%2C30s125%2C30%2C250%2C30s250-30%2C250-30'/%3E%3C/g%3E%3C/svg%3E");
+		}
+
+		h3,
+		p,
+		a,
+		ul {
+			color: #ddd;
+			margin-top: 0px;
+			text-align: center;
+		}
+
+		a:hover{
+			color: #222222;
+		}
+
+		.navbar-dark .navbar-nav .nav-link:hover {
+			transition: color 0.4s linear;
+			-webkit-transition: color 0.4s linear;
+			-moz-transition: color 0.4s linear;
+			color: white;
+		}
+
+		#mainBox {
+			background-color: #222222;
+			min-height: 500px;
+			padding: 15px;
+			margin-top: 10px;
+			border: #222222 5px solid;
+		}
+
+		.footerbox {
+			margin-top: 2rem;
+		}
+
+		.navbar {
+			padding-top: 7px;
+			padding-bottom: 6px;
+			border: 0;
+			border-radius: 0;
+			margin-bottom: 0;
+			font-size: 12px;
+			letter-spacing: 2px;
+		}
+
+
+
+		#map-canvas {
+			padding: 5px;
+			width: 400px;
+			height: 400px;
+		}
+
+		h1 {
+			color: lightgrey;
+			font-size: 30px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			margin-top: 0px;
+			text-align: center;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		#logo {
+			/* margin-left: auto;
+			margin-right: auto; */
+			margin-bottom: 1rem;
+			max-width: 500px;
+			display: block;
+		}
+
+		/* .table {
+			background-color: #6d8f4d;
+			padding: none;
+			overflow-y: hidden;
+			border: none;
+		} */
+
+		th,
+		td {
+			padding: 8px;
+			color: #35475d;
+			border: 1px solid #35475d;
+		}
+
+
+		.alert-info {
+			color: #35475d;
+			background-color: rgb(211, 180, 124);
+			border-color: #2f2f2f;
+			text-align: center;
+		}
+
+		.well {
+			color: #35475d;
+			background-color: #ddd;
+			border-color: #2f2f2f;
+			text-align: center;
+		}
+
+		img {
+			margin-left: auto;
+			margin-right: auto;
+			max-height: auto;
+			max-width: 470px;
+		}
+
+		.list-menu {
+			font-size: 0.9rem;
+		}
+
+		.list-menu .list-menu-item {
+			border-bottom: 1px solid #eb6f24;
+			padding-bottom: .25rem;
+			margin-bottom: 1rem;
+			font-weight: bold;
+		}
+
+		.list-menu .list-menu-info {
+			margin-bottom: 1rem;
+			font-style: italic;
+			color: #a1a1a1;
+		}
+
+		#menu {
+			margin-top: 5em;
+		}
+
+		#viewMenu{
+			display: block;
+			background-color: #eb6f24;
+			border-radius: .5rem;
+		}
+
+		.contactIcons{
+			font-size: 3em; color: #6d8f4d;
+		}
+
+		#carousel {
+			margin-bottom: 2rem;
+		}
+
+		.slideImage{
+			/* border: solid 2px #eb6f24; */
+			border-radius: 1rem;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+
+		.feature{
+			background-color: #222222;
+			/* max-width: 475px;
+			margin-left: auto;
+			margin-right: auto; */
+			padding: 1.3rem;
+			border-radius: 0;
+			border: none;
+
+		}
+
+		@media (min-width: 992px) {
+			.list-menu {
+				width: 50%;
+				font-size: 1.1rem;
+			}
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+
+</head>
+
+<body>
 	<div ng-app="myApp">
-		
+
 		<!-- Navbar -->
-		<nav class="navbar navbar-default" >
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<!--Hamburger-->
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span> 
-					</button>
-					<a class="navbar-brand" id="logo" href="#/!"><span class="glyphicon glyphicon-flash">&nbsp;</span>Picadillo Tacos</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#/!">HOME</a></li>
-						<li><a href="#!about">MENU</a></li>
-						<li><a href="#!location">LOCATION</a></li>
-						<li><a href="#!contact">CONTACT</a></li>
+		<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+			<div class="container">
+				<a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Picadillo Tacos</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				    aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav mx-auto">
+						<li class="nav-item active px-lg-4">
+							<a class="nav-link text-uppercase text-expanded" href="index.html">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item px-lg-4">
+							<a class="nav-link text-uppercase text-expanded" href="#!menu">Menu</a>
+						</li>
+						<li class="nav-item px-lg-4">
+							<a class="nav-link text-uppercase text-expanded" href="#!location">Location</a>
+						</li>
+						<li class="nav-item px-lg-4">
+							<a class="nav-link text-uppercase text-expanded" href="#!contact">Contact</a>
+						</li>
 					</ul>
-				</div>	
-			</div>    
+				</div>
+			</div>
 		</nav>
-			
+
+
 		<div id="mainBox">
 			<div ng-view></div>
 		</div>
-			
-		<div id="footerBox">
-			<h3>Picadillo Tacos -- 235 Marshall Ave, St Paul, MN 55102</h3>
-		</div>
-			
+
+
+		<!-- footer -->
+		<footer class="footerbox">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-6 d-flex justify-content-center">
+
+						<ul class="list-unstyled">
+							<li>
+								<h3 class="text-uppercase text-expanded font-weight-bold border-bottom">Find Us</h3>
+							</li>
+							<li>
+								<i class="fa fa-map-marker"></i> 235 Marshall Ave, St Paul MN 55102
+							</li>
+							<li>
+								<i class="fa fa-phone"></i> 612-555-5555
+							</li>
+							<li>
+								<i class="fa fa-envelope"></i>
+								<a href="mailto:contact@picadillotacos.com">contact@picadillotacos.com</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-6 d-flex justify-content-center">
+						<ul class="list-unstyled">
+							<li>
+								<h3 class="text-uppercase text-expanded font-weight-bold border-bottom">Hours</h3>
+							</li>
+							<li>
+								<p>
+									<span class="text-uppercase font-weight-bold">Monday-Thursday:</span>
+									<br>10am to 7pm</p>
+								<p>
+									<span class="text-uppercase font-weight-bold">Friday-Sunday:</span>
+									<br>11am to 9pm</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+		<button class="float-right btn btn-link">
+			<a href="#">Back to Top</a>
+		</button>
+
 	</div>
-	
+
 	<script>
-			var app = angular.module("myApp", ["ngRoute"]);
-			
-			app.config(function($routeProvider) {
-    			$routeProvider
-    			.when("/", {
-        			templateUrl : "home4.html",
-        			controller : "homeController"
-    			})
-    			.when("/about", {
-        			templateUrl : "about4.html",
-        			controller : "aboutController"
-    			})
-    			.when("/location", {
-        			templateUrl : "location4.html",
-        			controller : "locationController"
-    			})
-    			.when("/contact", {
-        			templateUrl : "contact4.html",
-        			controller : "contactController"
-    			})
-    			.otherwise ({
-   					redirectTo : "/"
-   				})
-    		});
-    	
-    		app.controller("homeController", function ($scope) {
-    			$scope.homeMessage1 = "WELCOME TO PICADILLO TACOS!";
-    		});
-    		
-			app.controller("contactController", function ($scope) {
-				$scope.contactMessage1 = "Please feel free to email us at info@website.com";
-				$scope.contactMessage2 = "or by phone at 651-555-1234";
-				$scope.contactMessage3 = "Directions to Our Location:";
-    		});
-    		
-    		app.controller("aboutController", function ($scope) {
-				$scope.aboutRecord = [ 
-					{ 	menuName: 'PICADILLO TACO', 
-						description: 'Ground beef, potatoes and spices with onions and cilantro', 
-						calories: '190 Cal', price: '$3.99'},
-					{ 	menuName: 'ROASTED PORK TACO', 
-						description: 'Rubbed with coarse pepper, sea salt and garlic, then roasted and served with cotija cheese and pickled red onions.', 
-						calories: '170 Cal', price: '$4.99'},
-					{ 	menuName: 'BEEF FAJITA TACO', 
-						description: 'With grilled onions and cilantro.', 
-						calories: '210 Cal', price: '$4.99'},
-					{ 	menuName: 'CHICKEN FAJITA TACO', 
-						description: 'With pico de gallo and cilantro', 
-						calories: '210 Cal', price: '$4.99'},
-					{ 	menuName: 'BRISKET TACO', 
-						description: 'Very slowly roasted then shredded, queso fresco, onion and cilantro.', 
-						calories: '240 Cal', price: '$5.99'},
-					{ 	menuName: 'RAJAS TACO VEGETARIAN', 
-						description: 'Grilled poblanos, mushrooms, onions and red peppers topped with queso fresco and cilantro', 
-						calories: '80 Cal', price: '$4.99'},
-					{ 	menuName: 'FISH TACO', 
-						description: 'Grilled with chipotle crema, red cabbage and cilantro', 
-						calories: '140 Cal', price: '$4.99'},
-					{ 	menuName: 'BAJA SHRIMP TACO', 
-						description: 'Grilled shrimp with creamy baja sauce, red cabbage and cilantro', 
-						calories: '180 Cal', price: '$4.99'}
-					];
-    		});
-    		
-    		app.controller("locationController", function ($scope) {
-				$scope.locationRecord1 = ["Minneapolis", "Saint Paul", "Anoka", "Blaine", "Brooklyn Park"];
-				$scope.locationRecord2 = ["Apple Valley", "Burnsville", "Eagan", "Minnetonka", "Bloomington"];
-    		});
-	
-		
+		var app = angular.module("myApp", ["ngRoute"]);
+
+		app.config(function ($routeProvider) {
+			$routeProvider
+				.when("/", {
+					templateUrl: "home.html",
+					controller: "homeController"
+				})
+				.when("/menu", {
+					templateUrl: "menu.html",
+					controller: "menuController"
+				})
+				.when("/location", {
+					templateUrl: "location.html",
+					controller: "locationController"
+				})
+				.when("/contact", {
+					templateUrl: "contact.html",
+					controller: "contactController"
+				})
+				.otherwise({
+					redirectTo: "/"
+				})
+		});
+
+		app.controller("homeController", function ($scope) {
+			$scope.homeMessage1 = "WELCOME TO PICADILLO TACOS!";
+		});
+
+		app.controller("contactController", function ($scope) {
+			$scope.contactMessage0 = "Get in touch for any questions reguarding Reservations, Catering, or further information";
+			$scope.contactMessage1 = "Email us at contact@picadillotacos.com";
+			$scope.contactMessage2 = "or by phone at 612-555-5555";
+			$scope.contactMessage3 = "Directions to Our Location:";
+		});
+
+		app.controller("menuController", function ($scope) {
+			$scope.menuRecord = [{
+					menuName: 'CLASSIC PICADILLO TACO',
+					description: 'Ground beef, potatoes, and spices with onions and cilantro',
+					calories: '190 Cal',
+					price: '$6.99'
+				},
+				{
+					menuName: 'ROASTED PORK TACO',
+					description: 'Rubbed with coarse pepper, sea salt and garlic, then roasted and served with cotija cheese and pickled red onions.',
+					calories: '170 Cal',
+					price: '$8.99'
+				},
+				{
+					menuName: 'BEEF FAJITA TACO',
+					description: 'With grilled onions and cilantro.',
+					calories: '210 Cal',
+					price: '$5.99'
+				},
+				{
+					menuName: 'CHICKEN FAJITA TACO',
+					description: 'With pico de gallo and cilantro',
+					calories: '210 Cal',
+					price: '$5.99'
+				},
+				{
+					menuName: 'BRISKET TACO',
+					description: 'Very slowly roasted then shredded, queso fresco, onion and cilantro.',
+					calories: '240 Cal',
+					price: '$8.99'
+				},
+				{
+					menuName: 'RAJAS TACO VEGETARIAN',
+					description: 'Grilled poblanos, mushrooms, onions and red peppers topped with queso fresco and cilantro',
+					calories: '80 Cal',
+					price: '$6.99'
+				},
+				{
+					menuName: 'SPCIY SALMON BURRITOS',
+					description: 'Three grilled salmon tacos with chipotle crema, red cabbage and cilantro',
+					calories: '140 Cal',
+					price: '$4.99'
+				},
+				{
+					menuName: 'BAJA SHRIMP TACO',
+					description: 'Three shrimp tacos with creamy baja sauce, red cabbage and cilantro',
+					calories: '180 Cal',
+					price: '$4.99'
+				},
+				{
+					menuName: 'SIDES',
+					description: 'Spanish Rice, Refried Beans, Extra Salsa, Chocolate Cookie',
+					calories: 'n/a',
+					price: '$2.50'
+				},
+				{
+					menuName: 'DRINKS',
+					description: 'Coke, Sprite, Cranberry Juice, Tea',
+					calories: 'n/a',
+					price: '$1.99'
+				}
+
+			];
+		});
+
+		app.controller("locationController", function ($scope) {
+			$scope.locationRecord1 = ["Minneapolis", "Saint Paul", "Anoka", "Blaine"];
+			$scope.locationRecord2 = ["Apple Valley", "Burnsville", "Eagan", "Minnetonka"];
+		});
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	</body>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	    crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	    crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	    crossorigin="anonymous"></script>
+</body>
+
 </html>
